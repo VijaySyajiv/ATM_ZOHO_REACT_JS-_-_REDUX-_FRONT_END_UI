@@ -1,13 +1,22 @@
-body {
+#rootElement {
+  
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+body{
+  background-image:url(./pexels-lalesh-aldarwish-167964.jpg);
+  background-repeat:no-repeat ;
+  background-size :cover;
+  background-position:top; 
+  position: relative;
+  top: 0;
+  left: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.logo{
+  position: absolute;
+  height: 70px;
+  top:0;
+  left: 50px;
+  
 }

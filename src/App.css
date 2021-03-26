@@ -1,38 +1,75 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App{
+  width: 100vw;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.box{
+  border: 2px solid rgba(29, 3, 3, 0.658);
+  width: 45%;
+  height: 45%;
+  justify-items: center;
+  align-items: center;  
+}
+.box form{
+
+  margin-left: 50px;
+  background-color: rgba(10, 8, 8, 0.548);
+  width: 170px;
+
+}
+h1{
+  color: black;
+  background-color: rgba(87, 82, 82, 0.596);
+  font-style:inherit; 
+  
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+label{
+  color:whitesmoke;
+  font-style:inherit; 
+  font-size: 20px;
+  display: flex;
+  clear: both;
+}
+.btn{
+  color: azure;
+  background-color: rgba(70, 68, 64, 0.315);
+  border-radius: 45;
+}
+.btn:hover{
+  background-color:black;
+}
+
+.InputValue{
+  border-radius:10px;
+  color: black;
+  background-color: rgba(70, 68, 64, 0.315);
+}
+.InputValue:hover{
+  border: black;
+}
+table{
+  text-align: center;
+  color: aliceblue;
+  background-color: rgba(10, 8, 8, 0.548);;
+}
+
+.InValid{
+  background-color: rgba(19, 17, 17, 0.171);
+  size: 15px;
+  color: rgba(250, 0, 0, 0.699);
+}
+.InValid:hover{
+  background-color: rgb(0, 0, 0);
+
+}
+h1:hover{
+  color: aliceblue;
+  background-color: rgb(0, 0, 0);
+
 }
