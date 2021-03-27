@@ -29,20 +29,20 @@ const submitForm=(e)=>{
             
             <h1 >Choose The Option</h1>
 	      <form onSubmit={submitForm}>
-	           		<input type="radio" id="MoneyLoader" 
+	           		
+					<label htmlFor="MoneyLoader"><input type="radio" id="MoneyLoader" 
                        name="startUpOption" onChange={handleStartUpOption} 
-                       value="moneyLoader"/>
-					<label htmlFor="MoneyLoader">MoneyLoader</label>
+                       value="moneyLoader"/>MoneyLoader</label><br/>
 					                                       
-					<input type="radio" id="accountDetails" 
-                    name="startUpOption" onChange={handleStartUpOption}
-                    value="accountDetails"/>
-					<label htmlFor="accountDetails">Account Details</label><br/>
 					
-					<input type="radio" id="atmOperation"
+					<label htmlFor="accountDetails"><input type="radio" id="accountDetails" 
+                    name="startUpOption" onChange={handleStartUpOption}
+                    value="accountDetails"/>Account Details</label><br/>
+					
+					
+					<label htmlFor="atmOperation"><input type="radio" id="atmOperation"
                      name="startUpOption"  onChange={handleStartUpOption}
-                     value="atmOperation"/>
-					<label htmlFor="atmOperation">ATM Operation</label>   
+                     value="atmOperation"/>ATM Operation</label><br/>
 
                     <button className="btn" type="submit" value="startUpOption">submit</button>
             </form>

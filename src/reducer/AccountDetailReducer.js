@@ -11,6 +11,8 @@ const initAccount = {
 
         case "ADD_PASSWORD":
           return {...state,password:action.payload};
+        case "REMOVE_ACCOUNT":
+          return {state:initAccount};
         default:
           return state;
       }

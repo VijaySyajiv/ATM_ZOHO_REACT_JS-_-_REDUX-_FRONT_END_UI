@@ -26,3 +26,25 @@ export const addAtmAmount = value => ({
   export const clearValue =()  => ({
     type: "CLEAR_VALUE"
   });
+  export const addCustomer =(object)  => ({
+    type: "ADD_CUSTOMBER",
+    payload:object
+  });
+  export const clearCustomber =()  => ({
+    type: "REMOVE_CUSTOMBER"
+  });
+  export const clearAccount =()  => ({
+    type: "REMOVE_ACCOUNT"
+  });
+  export const addWithDrawAmount =(value)  => ({
+    type: "ADD_WITHDRAW_AMOUNT",
+    payload:value
+  });
+  
+  export const removeNote =()=> ({
+    type: "REMOVE_NOTES"
+  });
+  export const addNote =(object)  => ({
+    type: "ADD_NOTES",
+    payload:object
+  });

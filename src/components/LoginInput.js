@@ -1,32 +1,47 @@
 import React from 'react'
 import { connect } from "react-redux";
 import { withRouter,useHistory } from 'react-router-dom';
-import {addAccountNumberValue,clearValue,addPasswordValue,addAccountNumber,addPassword} from "../action/action";
+import {addAccountNumberValue,clearAccount,addCustomer,clearValue,addPasswordValue,addAccountNumber,addPassword} from "../action/action";
 import axios from 'axios';
+import Modal from 'react-modal';
 
-const LoginInput = ({addAccountNumberValue,clearValue,atm,account,addAccountNumber,addPasswordValue,addPassword}) => {
+const LoginInput = ({addAccountNumberValue,addCustomer,clearAccount,clearValue,atm,account,addAccountNumber,addPasswordValue,addPassword}) => {
   const [accountDetails,setAccountDetails]=React.useState([]);
+  const [view,setView]=React.useState(false);
   let history=useHistory();
-  const sumbmitHandler= (e)=>{        
-        e.preventDefault(); 
+  const sumbmitHandler= (e)=>{ 
+    e.preventDefault(); 
+    if(atm.passwordValue===""||atm.accountNumberValue==="")      
+    setView(true)
+    else{
+        
         addPassword(atm.passwordValue)
         addAccountNumber(atm.accountNumberValue)
         clearValue();
-        // history.push('/Loading');
+    }
  
     }
     
     const check=()=>{
+
       if(accountDetails.isPresent===true){
-      console.log(accountDetails.accountDetails);
-      setAccountDetails([])
+      addCustomer(accountDetails.accountDetails);
+      setAccountDetails({})
+      clearAccount()
+      setView(false)
+      history.push('/AtmOperation');
       }
       else{
-        // setAccountDetails([])
+        if(accountDetails.isPresent===false && view!=true)
+        {
+          clearAccount()
+          setView(true)
+          setAccountDetails([])
+        }
       }
     }
     check();
-    // console.log(accountDetails);
+    
     React.useEffect(async ()=>{ 
         const json =JSON.stringify({account})
         if(account.accountNumber!==0&& account.password!==0){
@@ -37,7 +52,7 @@ const LoginInput = ({addAccountNumberValue,clearValue,atm,account,addAccountNumb
     },[account.accountNumber]);
 
     return (
-        <div>
+        <div >
             <form onSubmit={sumbmitHandler}>
             <input
             className="InputValue"
@@ -57,7 +72,7 @@ const LoginInput = ({addAccountNumberValue,clearValue,atm,account,addAccountNumb
             /><br/><br/>
             <button className="btn" type="submit" value="startUpOption">SUBMIT</button>
             </form>
-            <h1 className="InValid">In Valid Input</h1>
+           {view && <h1 className="InValid">In Valid Input</h1> }
         </div>
     )
 }
@@ -66,7 +81,9 @@ const mapDispatchToProps =  dispatch => ({
     addPasswordValue: (value) => dispatch(addPasswordValue(value)),
     addAccountNumber: (value) =>dispatch(addAccountNumber(value)),
     addPassword: (value) => dispatch(addPassword(value)),
-    clearValue:()=>dispatch(clearValue())
+    clearValue:()=>dispatch(clearValue()),
+    clearAccount:()=>dispatch(clearAccount()),
+    addCustomer:(object)=>dispatch(addCustomer(object))
   });
   const mapStateToProps = (state) => ({
     atm:state.atm,

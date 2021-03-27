@@ -26,32 +26,37 @@ const submitForm=(e)=>{
         alert("please chosse the option") ; 
     }
     return (
-        <div>
-            <h1>AtmOperation</h1>
-            <h1 >Enter  The Option</h1>
+        <div className="box">
+            <h1>ATM OPERATION</h1>
 	      <form onSubmit={submitForm}>
-	           		<input type="radio" id="checkBalance" 
+	           		
+					<label htmlFor="checkBalance">
+                    <input type="radio" id="checkBalance" 
                        name="startUpOption" onChange={handleStartUpOption} 
-                       value="checkBalance"/>
-					<label htmlFor="checkBalance">CheckBalance</label>
+                       value="checkBalance"/>  CheckBalance</label><br/>
 					                                       
-					<input type="radio" id="withDraw" 
-                    name="withDraw" onChange={handleStartUpOption}
-                    value="withDraw"/>
-					<label htmlFor="withDraw">WithDraw</label><br/>
 					
-					<input type="radio" id="transfer"
+					<label htmlFor="withDraw">
+                    <input type="radio" id="withDraw" 
+                      name="startUpOption" onChange={handleStartUpOption}
+                      value="withDraw"/>  WithDraw</label><br/>
+					
+					
+					<label htmlFor="transfer">
+                    <input type="radio" id="transfer"
                      name="startUpOption"  onChange={handleStartUpOption}
-                     value="transfer"/>
-					<label htmlFor="transfer">Online Transfer</label>
+                     value="transfer"/>  Online Transfer</label><br/>
 
+                    
+					<label htmlFor="miniStatement">
                     <input type="radio" id="miniStatement"
                      name="startUpOption"  onChange={handleStartUpOption}
-                     value="miniStatement"/>
-					<label htmlFor="miniStatement">MiniStatement</label>   
+                     value="miniStatement"/>  MiniStatement</label> 
+                    <br/>  
 
-                    <button className="btn" type="submit" value="startUpOption"/>
+                    <button className="btn" type="submit" value="startUpOption">SUBMIT</button>
             </form>
+            <br/>
             <Link to='/'>Back to home</Link>
         </div>
     )

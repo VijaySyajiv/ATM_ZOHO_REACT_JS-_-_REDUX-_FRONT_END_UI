@@ -7,8 +7,8 @@ const MoneyLoderInput = ({nextpage,addAtmAmountValue,addAtmAmount,atm}) => {
         
         e.preventDefault()
         console.log(atm.atmAmountValue)
-        if(atm.atmAmountValue%100000!==0){
-        alert("Please multiples of 1Lakh")
+        if(atm.atmAmountValue%100000!==0||atm.atmAmountValue==""){
+        alert("Please should be multiples of 1Lakh")
         }
         else{
           
@@ -31,9 +31,9 @@ const MoneyLoderInput = ({nextpage,addAtmAmountValue,addAtmAmount,atm}) => {
               value={atm.atmAmountValue}
               placeholder="Enter Amount..."
               onChange={handleChange}
-            />
+            /><br/><br/>
              <button className="btn" type="submit" value="startUpOption">submit</button>
-            </form>
+            </form><br/>
             
         </div>
     )

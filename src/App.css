@@ -8,25 +8,26 @@
   align-items: center;
 }
 
-.box{
-  border: 2px solid rgba(29, 3, 3, 0.658);
-  width: 45%;
-  height: 45%;
-  justify-items: center;
-  align-items: center;  
-}
-.box form{
-
-  margin-left: 50px;
-  background-color: rgba(10, 8, 8, 0.548);
-  width: 170px;
-
-}
+ .box{
+   background-color: rgba(24, 23, 23, 0.623);
+   border-radius:  25px;
+   
+ }
 h1{
   color: black;
-  background-color: rgba(87, 82, 82, 0.596);
+  background-color: rgba(87, 82, 82, 0.774);
   font-style:inherit; 
+  text-align: center;
+  border:2px solid rgba(255, 217, 0, 0.575);
   
+}
+table:hover{
+  background-color: rgba(197, 189, 189, 0.644);
+  color: black;
+  border-color: gold;
+  border-radius: 15px;
+  cursor:progress;
+
 }
 
 label{
@@ -35,16 +36,36 @@ label{
   font-size: 20px;
   display: flex;
   clear: both;
+  cursor:pointer;
+  font-weight: bold;
+}
+label:hover{
+  color:rgb(0, 0, 0);
+  background-color: rgb(252, 243, 243);
+  font-size: 20px;
+  border-radius:  45px;
+  border: 2px solid gold;
 }
 .btn{
   color: azure;
   background-color: rgba(70, 68, 64, 0.315);
   border-radius: 45;
+  margin-left:1em;
+  font-size: 20px;
+  font-weight: bold;
+  
 }
 .btn:hover{
   background-color:black;
+  border-color: gold;
+  cursor: pointer;
+  border-radius:  45px;
 }
-
+.Denomininations{
+  background-color: rgba(34, 30, 30, 0.534);
+  
+  
+}
 .InputValue{
   border-radius:10px;
   color: black;
@@ -52,17 +73,20 @@ label{
 }
 .InputValue:hover{
   border: black;
+  border-radius:  45px;
 }
 table{
   text-align: center;
   color: aliceblue;
-  background-color: rgba(10, 8, 8, 0.548);;
+  background-color: rgba(10, 8, 8, 0.548);
+  border-radius: 15px;
 }
 
 .InValid{
   background-color: rgba(19, 17, 17, 0.171);
   size: 15px;
   color: rgba(250, 0, 0, 0.699);
+  
 }
 .InValid:hover{
   background-color: rgb(0, 0, 0);
@@ -71,5 +95,7 @@ table{
 h1:hover{
   color: aliceblue;
   background-color: rgb(0, 0, 0);
+ cursor:alias;
+ border-radius:  45px;
 
 }
