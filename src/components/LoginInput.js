@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter,useHistory } from 'react-router-dom';
 import {addAccountNumberValue,clearAccount,addCustomer,clearValue,addPasswordValue,addAccountNumber,addPassword} from "../action/action";
 import axios from 'axios';
-import Modal from 'react-modal';
+import {compose} from "redux";
 
 const LoginInput = ({addAccountNumberValue,addCustomer,clearAccount,clearValue,atm,account,addAccountNumber,addPasswordValue,addPassword}) => {
   const [accountDetails,setAccountDetails]=React.useState([]);
@@ -88,7 +88,8 @@ const mapDispatchToProps =  dispatch => ({
   const mapStateToProps = (state) => ({
     atm:state.atm,
     account:state.account});
-  export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+  
+  export default compose(
+    withRouter,
+    connect(mapStateToProps, mapDispatchToProps)
   )(LoginInput);

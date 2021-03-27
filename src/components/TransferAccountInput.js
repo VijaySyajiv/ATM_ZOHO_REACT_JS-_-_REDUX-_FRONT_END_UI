@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter,useHistory } from 'react-router-dom';
 import {addAccountNumberValue,clearAccount,clearCustomber,addCustomer,clearValue,addPasswordValue,addAccountNumber,addPassword,addWithDrawAmount,addAtmAmountValue} from "../action/action";
 import axios from 'axios';
-
+import {compose} from "redux";
 
 const TransferAccountInput = ({addAccountNumberValue,customber,clearAccount,clearValue,atm,account,addAccountNumber,clearCustomber,addWithDrawAmount,addAtmAmountValue,addPasswordValue,addPassword}) => {
   const [accountDetails,setAccountDetails]=React.useState(false);
@@ -50,7 +50,7 @@ const TransferAccountInput = ({addAccountNumberValue,customber,clearAccount,clea
         clearCustomber()
         clearAccount()
         setSucessfull(false)
-        history.push('/AtmOperation');
+        history.push('/Loginpage');
 
       }
        
@@ -130,7 +130,7 @@ const mapDispatchToProps =  dispatch => ({
     atm:state.atm,
     account:state.account,
     customber:state.customber.state});
-  export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(TransferAccountInput);
+    export default compose(
+      withRouter,
+      connect(mapStateToProps, mapDispatchToProps)
+    )(TransferAccountInput);

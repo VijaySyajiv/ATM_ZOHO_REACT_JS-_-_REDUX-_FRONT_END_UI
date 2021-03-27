@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { withRouter,useHistory } from 'react-router-dom';
 import {addAtmAmountValue,addNote,addWithDrawAmount,clearValue} from "../action/action";
 import axios from 'axios';
+import {compose} from "redux";
 
 
 const WithDrawInput = ({addWithDrawAmount,clearValue,addNote,atm,customber,addAtmAmountValue}) => {
@@ -104,7 +105,7 @@ const mapDispatchToProps =  dispatch => ({
     atm:state.atm,
     account:state.account,
     customber:state.customber.state});
-  export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(WithDrawInput);
+    export default compose(
+      withRouter,
+      connect(mapStateToProps, mapDispatchToProps)
+    )(WithDrawInput);

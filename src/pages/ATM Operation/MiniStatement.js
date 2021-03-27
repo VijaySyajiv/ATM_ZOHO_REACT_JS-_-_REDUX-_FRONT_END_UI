@@ -65,7 +65,7 @@ const remarks=(to,from,type,amount)=>{
             }
                                 
         
-        <Link to='/'>Back to home</Link>
+        <Link to='/Loginpage'>Back to home</Link>
         </div>
     )
 }

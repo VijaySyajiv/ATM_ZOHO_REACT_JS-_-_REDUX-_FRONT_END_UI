@@ -49,4 +49,3 @@ const mapDispatchToProps = dispatch => ({
     mapDispatchToProps
   )(MoneyLoderInput);
   
-    ;
