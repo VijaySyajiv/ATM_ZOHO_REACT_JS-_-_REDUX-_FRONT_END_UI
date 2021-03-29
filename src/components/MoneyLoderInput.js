@@ -8,7 +8,7 @@ const MoneyLoderInput = ({nextpage,addAtmAmountValue,addAtmAmount,atm}) => {
         e.preventDefault()
         console.log(atm.atmAmountValue)
         if(atm.atmAmountValue%100000!==0||atm.atmAmountValue==""){
-        alert("Please should be multiples of 1Lakh")
+        alert("Please Money should be multiples of 1Lakh")
         }
         else{
           

@@ -8,6 +8,7 @@ import {compose} from "redux";
 const LoginInput = ({addAccountNumberValue,addCustomer,clearAccount,clearValue,atm,account,addAccountNumber,addPasswordValue,addPassword}) => {
   const [accountDetails,setAccountDetails]=React.useState([]);
   const [view,setView]=React.useState(false);
+  const [callApi,setCallApi]=React.useState(false);
   let history=useHistory();
   const sumbmitHandler= (e)=>{ 
     e.preventDefault(); 
@@ -17,6 +18,7 @@ const LoginInput = ({addAccountNumberValue,addCustomer,clearAccount,clearValue,a
         
         addPassword(atm.passwordValue)
         addAccountNumber(atm.accountNumberValue)
+        setCallApi(true)
         clearValue();
     }
  
@@ -27,6 +29,7 @@ const LoginInput = ({addAccountNumberValue,addCustomer,clearAccount,clearValue,a
       if(accountDetails.isPresent===true){
       addCustomer(accountDetails.accountDetails);
       setAccountDetails({})
+      setCallApi(false)
       clearAccount()
       setView(false)
       history.push('/AtmOperation');
@@ -36,7 +39,8 @@ const LoginInput = ({addAccountNumberValue,addCustomer,clearAccount,clearValue,a
         {
           clearAccount()
           setView(true)
-          setAccountDetails([])
+          setAccountDetails({})
+          setCallApi(true)
         }
       }
     }
@@ -44,12 +48,11 @@ const LoginInput = ({addAccountNumberValue,addCustomer,clearAccount,clearValue,a
     
     React.useEffect(async ()=>{ 
         const json =JSON.stringify({account})
-        if(account.accountNumber!==0&& account.password!==0){
+        if(callApi){
           const response=await axios.post ('http://localhost:8080/AutomatedTellerMachine/login',json)
-          .then((response)=> axios.get ('http://localhost:8080/AutomatedTellerMachine/login')
-          .then(r=>{setAccountDetails(r.data);})).catch(err => {console.error(err)})
+          .then(response=>{setAccountDetails(response.data);}).catch(err => {console.error(err)})
         }  
-    },[account.accountNumber]);
+    },[account.accountNumber,account.password]);
 
     return (
         <div >
@@ -72,7 +75,7 @@ const LoginInput = ({addAccountNumberValue,addCustomer,clearAccount,clearValue,a
             /><br/><br/>
             <button className="btn" type="submit" value="startUpOption">SUBMIT</button>
             </form>
-           {view && <h1 className="InValid">In Valid Input</h1> }
+           {view && <h1 className="InValid">InValid Input</h1> }
         </div>
     )
 }

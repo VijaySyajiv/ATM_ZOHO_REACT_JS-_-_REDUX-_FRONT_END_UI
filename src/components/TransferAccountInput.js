@@ -8,6 +8,7 @@ import {compose} from "redux";
 const TransferAccountInput = ({addAccountNumberValue,customber,clearAccount,clearValue,atm,account,addAccountNumber,clearCustomber,addWithDrawAmount,addAtmAmountValue,addPasswordValue,addPassword}) => {
   const [accountDetails,setAccountDetails]=React.useState(false);
   const [view,setView]=React.useState(false);
+  const [inBalance,setInBalance]=React.useState(false);
   const [submit,setSubmit]=React.useState(false);
   const [amount,setAmount]=React.useState(false);
   const [accountverify,setAccountverify]=React.useState(false);
@@ -18,8 +19,10 @@ const TransferAccountInput = ({addAccountNumberValue,customber,clearAccount,clea
      
       if(e.target.children[0].name=="account"){
            console.log("s")
-            if(atm.accountNumberValue===""||atm.accountNumberValue==customber.accountNumber)      
+            if(atm.accountNumberValue===""||atm.accountNumberValue==customber.accountNumber){      
             setView(true)
+            clearValue();
+            }
             else{
                 addAccountNumber(atm.accountNumberValue)
                 setAccountverify(true)
@@ -29,16 +32,25 @@ const TransferAccountInput = ({addAccountNumberValue,customber,clearAccount,clea
       } 
       else{
           
-        if(atm.atmAmountValue>10000||atm.atmAmountValue<100||atm.atmAmountValue==""){
-           { setView(true)
+        if(atm.atmAmountValue>10000||atm.atmAmountValue<100||atm.atmAmountValue=="")
+           { 
+             setView(true)
+             setInBalance(false)
             clearValue()
-        }
-            }
-            else{
-              console.log(atm.atmAmountValue)
-                addWithDrawAmount(atm.atmAmountValue)
-                setAmount(true)
-                setView(false)
+           }
+        else if(customber.accountBalance<atm.atmAmountValue)
+           {
+            setInBalance(true)
+            setView(false)
+            clearValue()
+           }
+            
+        else{
+            
+            addWithDrawAmount(atm.atmAmountValue)
+            setAmount(true)
+            setView(false)
+            setInBalance(false)
               
             }
       }
@@ -50,7 +62,7 @@ const TransferAccountInput = ({addAccountNumberValue,customber,clearAccount,clea
         clearCustomber()
         clearAccount()
         setSucessfull(false)
-        history.push('/Loginpage');
+        history.push('/Success');
 
       }
        
@@ -77,8 +89,7 @@ const TransferAccountInput = ({addAccountNumberValue,customber,clearAccount,clea
         console.log(accountDetails+"-"+accountverify+"-"+amount)       
         if(accountDetails==false && accountverify==true){
           const response=await axios.post ('http://localhost:8080/AutomatedTellerMachine/transfer',account.accountNumber)
-          .then((response)=> axios.get ('http://localhost:8080/AutomatedTellerMachine/transfer')
-          .then(r=>{setAccountDetails(r.data)})).catch(err => {console.error(err)})
+         .then(response=>{setAccountDetails(response.data)}).catch(err => {console.error(err)})
           setAccountverify(false)
         }  
         if(accountDetails==true && amount==true){
@@ -87,8 +98,7 @@ const TransferAccountInput = ({addAccountNumberValue,customber,clearAccount,clea
             const json =JSON.stringify({transferAccountNumber,customber,amount})
             console.log(json)
             const response=await axios.post ('http://localhost:8080/AutomatedTellerMachine/onlineTransferAmount',json)
-            .then((response)=> axios.get ('http://localhost:8080/AutomatedTellerMachine/onlineTransferAmount')
-            .then(r=>{setSucessfull(r.data);})).catch(err => {console.error(err)})
+           .then(r=>{setSucessfull(r.data);}).catch(err => {console.error(err)})
           } 
         
     },[account.accountNumber,atm.withDrawAmount]);
@@ -113,7 +123,8 @@ const TransferAccountInput = ({addAccountNumberValue,customber,clearAccount,clea
             />}<br/><br/>
             <button className="btn" type="submit" value="startUpOption">SUBMIT</button>
             </form>
-           {view && <h1 className="InValid">In Valid Input</h1> }
+           {view && <h1 className="InValid">InValid Input</h1> }
+           {inBalance && <h1 className="InValid">Insufficient Balance</h1> }
         </div>
     )
 }

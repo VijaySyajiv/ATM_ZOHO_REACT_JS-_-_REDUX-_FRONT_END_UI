@@ -11,6 +11,7 @@ import Loading from './Loading';
 import Denomininations from './ATM Operation/Denomininations';
 import Transfer from './ATM Operation/Transfer';
 import MiniStatement from './ATM Operation/MiniStatement';
+import Success from './Success'
 const RouterSetup=()=>{
       return (
           <>
@@ -26,7 +27,8 @@ const RouterSetup=()=>{
                <Route path='/WithDraw'><WithDraw/></Route>
                <Route path='/Denomininations'><Denomininations/></Route>
                <Route path='/Transfer'><Transfer/></Route>
-               <Route path='/MiniStatement'><MiniStatement/></Route>      
+               <Route path='/MiniStatement'><MiniStatement/></Route>
+               <Route path='/Success'><Success/></Route>      
               </Switch>
           </Router>
           </>

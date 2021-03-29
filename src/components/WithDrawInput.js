@@ -1,12 +1,12 @@
 import React from 'react'
 import { connect } from "react-redux";
 import { withRouter,useHistory } from 'react-router-dom';
-import {addAtmAmountValue,addNote,addWithDrawAmount,clearValue} from "../action/action";
+import {addAtmAmountValue,removeWithdrawAmount,addNote,addWithDrawAmount,clearValue} from "../action/action";
 import axios from 'axios';
 import {compose} from "redux";
 
 
-const WithDrawInput = ({addWithDrawAmount,clearValue,addNote,atm,customber,addAtmAmountValue}) => {
+const WithDrawInput = ({addWithDrawAmount,removeWithdrawAmount,clearValue,addNote,atm,customber,addAtmAmountValue}) => {
   const [accountDetails,setAccountDetails]=React.useState([]);
   const [view,setView]=React.useState(false);
   const [balance,setBalance]=React.useState(false);
@@ -73,8 +73,8 @@ const WithDrawInput = ({addWithDrawAmount,clearValue,addNote,atm,customber,addAt
             let transferamount=atm.withDrawAmount
             const json =JSON.stringify({customber,transferamount})
           const response=await axios.post ('http://localhost:8080/AutomatedTellerMachine/WithDraw',json)
-          .then((response)=>axios.get ('http://localhost:8080/AutomatedTellerMachine/WithDraw')
-         .then(r=>{setAccountDetails(r.data);setNextPage(true)})).catch(err => {console.error(err)})
+         .then(r=>{setAccountDetails(r.data);setNextPage(true)}).catch(err => {console.error(err)})
+         removeWithdrawAmount()
         }  
     },[atm.withDrawAmount]);
 
@@ -99,7 +99,8 @@ const mapDispatchToProps =  dispatch => ({
     addWithDrawAmount: value =>{dispatch(addWithDrawAmount(value))},
     addAtmAmountValue: value =>dispatch(addAtmAmountValue(value)),
     clearValue:()=>dispatch(clearValue()),
-    addNote:(object)=>dispatch(addNote(object))
+    addNote:(object)=>dispatch(addNote(object)),
+    removeWithdrawAmount:()=>dispatch(removeWithdrawAmount())
   });
   const mapStateToProps = (state) => ({
     atm:state.atm,

@@ -48,3 +48,6 @@ export const addAtmAmount = value => ({
     type: "ADD_NOTES",
     payload:object
   });
+  export const removeWithdrawAmount =()=> ({
+    type: "REMOVE_WITHDRAW_AMOUNT"
+  });

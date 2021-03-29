@@ -16,6 +16,8 @@ export const atm =(state=initState , action) => {
         return { ...state, withDrawAmount:action.payload,atmAmountValue:""};  
       case "ADD_ACCOUNT_NUMBER_VALUE":
         return {...state, accountNumberValue:action.payload };
+        case "REMOVE_WITHDRAW_AMOUNT":
+        return {...state, withDrawAmount:"" };  
       case "ADD_PASSWORD_VALUE":
         return {...state, passwordValue:action.payload };
       case "CLEAR_VALUE":

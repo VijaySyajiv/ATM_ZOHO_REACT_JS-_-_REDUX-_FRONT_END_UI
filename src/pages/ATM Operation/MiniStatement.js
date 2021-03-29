@@ -8,15 +8,17 @@ import { withRouter,useHistory} from 'react-router-dom';
  const MiniStatement = ({clearCustomber,customber}) => {
     const [miniStatement,setMiniStatement]=React.useState([]);
     const [show,setShow]=React.useState(false);
-   console.log(miniStatement)
+  let history=useHistory()
     React.useEffect(()=>{
         if(show==false){
-         const response=axios.post('http://localhost:8080/AutomatedTellerMachine/statement',customber.accountNumber)
-        .then((response)=> axios.get ('http://localhost:8080/AutomatedTellerMachine/statement')
-        .then(r=>{console.log(r.data);setMiniStatement(r.data)})).catch(err => {console.error(err)})
+        const    json=JSON.stringify({customber})
+         const response=axios.post('http://localhost:8080/AutomatedTellerMachine/statement',json)
+        .then((response)=>{console.log(response.data);setMiniStatement(response.data)}).catch(err => {console.error(err)})
         setShow(true)
-    }
-    
+    } 
+    else{
+        setTimeout(()=>{history.push('/Loginpage')},5000)
+    }   
     },[miniStatement])
 const remarks=(to,from,type,amount)=>{
     if(to!=0){
@@ -65,7 +67,7 @@ const remarks=(to,from,type,amount)=>{
             }
                                 
         
-        <Link to='/Loginpage'>Back to home</Link>
+        
         </div>
     )
 }
